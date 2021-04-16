@@ -627,8 +627,9 @@ export class RDFDataProvider implements DataProvider {
                 ) {
                     const property = props[statemet.predicate.nominalValue];
                     const value = {
+                        //NH:15-3-21 - text->value lang->language //onderstaande aanpassingen gedaan zodat waardes goed geparsed worden.
                         text: statemet.object.nominalValue,
-                        lang: statemet.object.language || '',
+                        language: statemet.object.language || '',
                     };
                     props[statemet.predicate.nominalValue] = {
                         type: 'string',
