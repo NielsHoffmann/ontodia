@@ -131,11 +131,14 @@ export class Workspace extends Component<WorkspaceProps, WorkspaceState> {
         collapseNavigator: false,
         leftPanelInitiallyOpen: true,
         rightPanelInitiallyOpen: false,
+        //NH 12-4-2021 --aanpassing aan nederlands, engels ipv engels, russisch...
         languages: [
+            {code: 'nl', label: 'Nederlands'},
             {code: 'en', label: 'English'},
-            {code: 'ru', label: 'Russian'},
+            //{code: 'ru', label: 'Russian'},
         ],
-        language: 'en',
+        //language: 'en',
+        language: 'nl',
     };
 
     private readonly listener = new EventObserver();
