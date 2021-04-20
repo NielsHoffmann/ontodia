@@ -40,6 +40,7 @@ export type QueryFunction = (params: {
     method: string;
 }) => Promise<Response>;
 
+const config_data = require('../../../../auth_config.json')
 /**
  * Runtime settings of SPARQL data provider
  */
@@ -764,21 +765,32 @@ export function executeSparqlQuery<Binding>(
 ): Promise<SparqlResponse<Binding>> {
     let internalQuery: Promise<Response>;
     if (method === SparqlQueryMethod.GET) {
+        //console.log('config data: ' + config_data.Authorization)
         internalQuery = queryFunction({
             url: appendQueryParams(endpoint, {query}),
-            headers: {
-                'Accept': 'application/sparql-results+json',
-            },
+            headers: Object.assign(config_data, {'Accept': 'application/json'})
+            //{
+                //'Accept': 'application/sparql-results+json',
+                //'Accept': 'application/json',
+                //'Authorization':,
+                //'Authorization-Tyk':  
+            //}
+            ,
             method: 'GET',
         });
     } else {
         internalQuery = queryFunction({
             url: endpoint,
             body: query,
-            headers: {
-                'Accept': 'application/sparql-results+json',
-                'Content-Type': 'application/sparql-query; charset=UTF-8',
-            },
+            headers: Object.assign(config_data, {'Accept': 'application/json'})
+            // {
+            //     //'Accept': 'application/sparql-results+json',
+            //     'Accept': 'application/json',
+            //     'Authorization':,
+            //     'Authorization-Tyk':' 
+            //     //'Content-Type': 'application/sparql-query; charset=UTF-8',
+            // }
+            ,
             method: 'POST',
         });
     }
@@ -803,19 +815,27 @@ export function executeSparqlConstruct(
     if (method === SparqlQueryMethod.GET) {
         internalQuery = queryFunction({
             url: appendQueryParams(endpoint, {query}),
-            headers: {
-                'Accept': 'text/turtle',
-            },
+            headers: Object.assign(config_data, {'Accept': 'text/turtle',})
+            //  {
+            //     'Accept': 'text/turtle',
+            //     'Authorization':,
+            //     'Authorization-Tyk': 
+            // }
+            ,
             method: 'GET',
         });
     } else {
         internalQuery = queryFunction({
             url: endpoint,
             body: query,
-            headers: {
-                'Accept': 'text/turtle',
-                'Content-Type': 'application/sparql-query; charset=UTF-8',
-            },
+            headers: Object.assign(config_data, {'Accept': 'text/turtle','Content-Type': 'application/sparql-query; charset=UTF-8'})
+            // {
+            //     'Accept': 'text/turtle',
+            //     'Content-Type': 'application/sparql-query; charset=UTF-8',
+            //     'Authorization':,
+            //     'Authorization-Tyk': 
+            // }
+            ,
             method: 'POST',
         });
     }
@@ -847,7 +867,7 @@ function queryInternal(params: {
     return fetch(params.url, {
         method: params.method,
         body: params.body,
-        credentials: 'same-origin',
+        //credentials: 'same-origin',
         mode: 'cors',
         cache: 'default',
         headers: params.headers,
