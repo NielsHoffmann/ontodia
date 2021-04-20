@@ -10,7 +10,8 @@ const N3Parser: any = require('rdf-parser-n3');
 const RdfXmlParser: any = require('rdf-parser-rdfxml');
 const JsonLdParser: any = require('rdf-parser-jsonld');
 
-const data = require<string>('./resources/orgOntology.ttl');
+//const data = require<string>('./resources/orgOntology.ttl');
+const data = require('./resources/orgOntology.ttl');
 
 function onWorkspaceMounted(workspace: Workspace) {
     if (!workspace) { return; }

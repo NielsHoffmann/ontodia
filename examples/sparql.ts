@@ -24,7 +24,8 @@ function onWorkspaceMounted(workspace: Workspace) {
         },
         validateLinks: true,
         dataProvider: new SparqlDataProvider({
-            endpointUrl: '/sparql',
+            //endpointUrl: '/sparql',
+            endpointUrl: 'http://10.0.0.119:7200/repositories/datahub?infer=false',
             imagePropertyUris: [
                 'http://collection.britishmuseum.org/id/ontology/PX_has_main_representation',
                 'http://xmlns.com/foaf/0.1/img',

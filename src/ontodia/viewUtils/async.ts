@@ -14,7 +14,7 @@ export abstract class BatchingScheduler {
             if (this.useAnimationFrame) {
                 this.scheduled = requestAnimationFrame(this.runSynchronously);
             } else {
-                this.scheduled = setTimeout(this.runSynchronously, this.waitingTime);
+                this.scheduled = window.setTimeout(this.runSynchronously, this.waitingTime);
             }
         }
     }

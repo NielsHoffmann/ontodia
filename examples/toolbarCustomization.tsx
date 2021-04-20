@@ -4,10 +4,14 @@ import * as ReactDOM from 'react-dom';
 import { Workspace, WorkspaceProps, DemoDataProvider, ToolbarProps } from '../src/ontodia/index';
 import { onPageLoad, tryLoadLayoutFromLocalStorage, saveLayoutToLocalStorage } from './common';
 
-const CLASSES = require<any>('./resources/classes.json');
-const LINK_TYPES = require<any>('./resources/linkTypes.json');
-const ELEMENTS = require<any>('./resources/elements.json');
-const LINKS  = require<any>('./resources/links.json');
+// const CLASSES = require<any>('./resources/classes.json');
+// const LINK_TYPES = require<any>('./resources/linkTypes.json');
+// const ELEMENTS = require<any>('./resources/elements.json');
+// const LINKS  = require<any>('./resources/links.json');
+const CLASSES = require('./resources/classes.json');
+const LINK_TYPES = require('./resources/linkTypes.json');
+const ELEMENTS = require('./resources/elements.json');
+const LINKS  = require('./resources/links.json');
 
 export interface Props extends ToolbarProps {
     onExampleClick?: () => void;

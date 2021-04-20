@@ -5,8 +5,11 @@ import { Workspace, WorkspaceProps, SparqlDataProvider, LinkTemplate } from '../
 
 import { onPageLoad, tryLoadLayoutFromLocalStorage, saveLayoutToLocalStorage } from './common';
 
-const certificateIcon = require<string>('../images/font-awesome/certificate-solid.svg');
-const cogIcon = require<string>('../images/font-awesome/cog-solid.svg');
+// const certificateIcon = require<string>('../images/font-awesome/certificate-solid.svg');
+// const cogIcon = require<string>('../images/font-awesome/cog-solid.svg');
+
+const certificateIcon = require('../images/font-awesome/certificate-solid.svg');
+const cogIcon = require('../images/font-awesome/cog-solid.svg');
 
 const CUSTOM_LINK_TEMPLATE: LinkTemplate = {
     markerSource: {

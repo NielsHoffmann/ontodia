@@ -1,18 +1,11 @@
 import { createElement, ClassAttributes } from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Workspace, WorkspaceProps, DemoDataProvider } from '../src/ontodia/index';
+import {
+    Workspace, WorkspaceProps, SparqlDataProvider, SparqlQueryMethod
+} from '../src/ontodia/index';
 
 import { onPageLoad, tryLoadLayoutFromLocalStorage, saveLayoutToLocalStorage } from './common';
-
-// const CLASSES = require<any>('./resources/classes.json');
-// const LINK_TYPES = require<any>('./resources/linkTypes.json');
-// const ELEMENTS = require<any>('./resources/elements.json');
-// const LINKS  = require<any>('./resources/links.json');
-const CLASSES = require('./resources/classes.json');
-const LINK_TYPES = require('./resources/linkTypes.json');
-const ELEMENTS = require('./resources/elements.json');
-const LINKS  = require('./resources/links.json');
 
 function onWorkspaceMounted(workspace: Workspace) {
     if (!workspace) { return; }
@@ -20,8 +13,13 @@ function onWorkspaceMounted(workspace: Workspace) {
     const diagram = tryLoadLayoutFromLocalStorage();
     workspace.getModel().importLayout({
         diagram,
-        dataProvider: new DemoDataProvider(CLASSES, LINK_TYPES, ELEMENTS, LINKS),
         validateLinks: true,
+        dataProvider: new SparqlDataProvider({
+            endpointUrl: 'http://10.0.0.119:7200/repositories/datahub?infer=false',
+            queryMethod: SparqlQueryMethod.GET,
+            acceptBlankNodes: true,
+            //queryFunction: new SparqlDataProvider.queryFunction({Headers:()})
+        }, ),
     });
 }
 
@@ -35,6 +33,10 @@ const props: WorkspaceProps & ClassAttributes<Workspace> = {
     viewOptions: {
         onIriClick: ({iri}) => window.open(iri),
     },
+    languages: [
+        {code: 'nl', label: 'Nederlands'},
+    ],
+    language: 'nl'
 };
 
 onPageLoad(container => ReactDOM.render(createElement(Workspace, props), container));
