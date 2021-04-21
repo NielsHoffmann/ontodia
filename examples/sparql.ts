@@ -24,8 +24,7 @@ function onWorkspaceMounted(workspace: Workspace) {
         },
         validateLinks: true,
         dataProvider: new SparqlDataProvider({
-            //endpointUrl: '/sparql',
-            endpointUrl: 'http://10.0.0.119:7200/repositories/datahub?infer=false',
+            endpointUrl: '/sparql',
             imagePropertyUris: [
                 'http://collection.britishmuseum.org/id/ontology/PX_has_main_representation',
                 'http://xmlns.com/foaf/0.1/img',
@@ -52,9 +51,9 @@ const props: WorkspaceProps & ClassAttributes<Workspace> = {
     languages: [
         {code: 'en', label: 'English'},
         {code: 'de', label: 'German'},
-        {code: 'ru', label: 'Russian'},
+        {code: 'nl', label: 'Nederlands'},
     ],
-    language: 'ru',
+    language: 'nl',
     elementTemplateResolver: types => {
         if (types.indexOf('http://www.ics.forth.gr/isl/CRMinf/I2_Belief') !== -1) {
             return GroupTemplate;
